@@ -1,0 +1,21 @@
+html, body, #map-canvas {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#map-canvas {
+	height: 75%;
+	width: 75%;
+}
+
+label {
+	padding: 20px 10px;
+	display: inline-block;
+	font-size: 1.5em;
+}
+
+input {
+	font-size: 0.75em;
+	padding: 10px;
+}
