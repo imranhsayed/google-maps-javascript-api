@@ -9,7 +9,7 @@
   When logged in to your google api dashboard Click on Credentials and Create Credentials ( Create Credentials > Api key ) for the above API
 get the API key
 
-#Step-3 ENABLE APIS:
+# Step-3 ENABLE APIS:
 	Go to Api Library on https://console.cloud.google.com/apis/library and active the below API libraries:
 	1-Places API
 	2-Geocoding API
