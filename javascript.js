@@ -1,17 +1,18 @@
 function initialize() {
 
 	var mapOptions, map, marker, searchBox,
-		infoWindow = '';
+		infoWindow = '',
 		addressEl = document.querySelector( '#map-search' ),
 		latEl = document.querySelector( '.latitude' ),
 		longEl = document.querySelector( '.longitude' ),
-		element = document.getElementById( 'map-canvas' );
+		element = document.getElementById( 'map-canvas' ),
+		city = document.querySelector( '.reg-input-city' );
 
 	mapOptions = {
 		// How far the maps zooms in.
 		zoom: 8,
 		// Current Lat and Long position of the pin/
-		center: new google.maps.LatLng( -34.397, 150.644 ),
+		center: new google.maps.LatLng( 18.5204, 73.8567 ),
 		// center : {
 		// 	lat: -34.397,
 		// 	lng: 150.644
@@ -86,11 +87,11 @@ function initialize() {
 	} );
 
 
-		/**
+	/**
 	 * Finds the new position of the marker when the marker is dragged.
 	 */
 	google.maps.event.addListener( marker, "dragend", function ( event ) {
-		var lat, long, address;
+		var lat, long, address, resultArray, citi;
 
 		console.log( 'i am dragged' );
 		lat = marker.getPosition().lat();
@@ -100,6 +101,16 @@ function initialize() {
 		geocoder.geocode( { latLng: marker.getPosition() }, function ( result, status ) {
 			if ( 'OK' === status ) {  // This line can also be written like if ( status == google.maps.GeocoderStatus.OK ) {
 				address = result[0].formatted_address;
+				resultArray =  result[0].address_components;
+
+				// Get the city and set the city input value to the one selected
+				for( var i = 0; i < resultArray.length; i++ ) {
+					if ( resultArray[ i ].types[0] && 'administrative_area_level_2' === resultArray[ i ].types[0] ) {
+						citi = resultArray[ i ].long_name;
+						console.log( citi );
+						city.value = citi;
+					}
+				}
 				addressEl.value = address;
 				latEl.value = lat;
 				longEl.value = long;

@@ -12,6 +12,7 @@
 <label for="">Address: <input id="map-search" class="controls" type="text" placeholder="Search Box" size="104"></label><br>
 <label for="">Lat: <input type="text" class="latitude"></label>
 <label for="">Long: <input type="text" class="longitude"></label>
+<label for="">City <input type="text" class="reg-input-city" placeholder="City"></label>
 
 <div id="map-canvas"></div>
 
