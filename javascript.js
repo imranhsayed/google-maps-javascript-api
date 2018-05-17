@@ -1,12 +1,12 @@
 function initialize() {
 
-	var mapOptions, map, marker, searchBox,
+	var mapOptions, map, marker, searchBox, city,
 		infoWindow = '',
 		addressEl = document.querySelector( '#map-search' ),
 		latEl = document.querySelector( '.latitude' ),
 		longEl = document.querySelector( '.longitude' ),
-		element = document.getElementById( 'map-canvas' ),
-		city = document.querySelector( '.reg-input-city' );
+		element = document.getElementById( 'map-canvas' );
+	city = document.querySelector( '.reg-input-city' );
 
 	mapOptions = {
 		// How far the maps zooms in.
@@ -56,7 +56,7 @@ function initialize() {
 	google.maps.event.addListener( searchBox, 'places_changed', function () {
 		var places = searchBox.getPlaces(),
 			bounds = new google.maps.LatLngBounds(),
-			i, place, lat, long,
+			i, place, lat, long, resultArray,
 			addresss = places[0].formatted_address;
 
 		for( i = 0; place = places[i]; i++ ) {
@@ -67,10 +67,21 @@ function initialize() {
 		map.fitBounds( bounds );  // Fit to the bound
 		map.setZoom( 15 ); // This function sets the zoom to 15, meaning zooms to level 15.
 		// console.log( map.getZoom() );
+
 		lat = marker.getPosition().lat();
 		long = marker.getPosition().lng();
 		latEl.value = lat;
 		longEl.value = long;
+
+		resultArray =  places[0].address_components;
+
+		// Get the city and set the city input value to the one selected
+		for( var i = 0; i < resultArray.length; i++ ) {
+			if ( resultArray[ i ].types[0] && 'administrative_area_level_2' === resultArray[ i ].types[0] ) {
+				citi = resultArray[ i ].long_name;
+				city.value = citi;
+			}
+		}
 
 		// Closes the previous info window if it already exists
 		if ( infoWindow ) {
