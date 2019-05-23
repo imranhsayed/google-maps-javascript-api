@@ -15,8 +15,9 @@
 
 ## Step-2 Create Project :file_folder:
  
-  * When logged in to your google api dashboard Click on Credentials and Create Credentials ( Create Credentials > Api key ) for the above API
-get the API key
+  * Login to your google api dashboard
+  * Click on Credentials and Create Credentials ( Create Credentials > Api key ) for the above API
+  * Get the API key
 
 ## Step-3 ENABLE APIS :tanabata_tree:
 
